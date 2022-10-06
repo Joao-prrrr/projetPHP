@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<!-- 
+    Projet : Voila! Website
+    Détail : page principal
+    Auteur : Joao Araribá
+    Date : 17.05.2022 v1
+ -->
+
+<!-- Texte de thèmes nautique écrit par Joao Araribá -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Qu'est ce que la voile? - Voila!</title>
+</head>
+
+<!--
+    Elements d'accessibilité choisi :
+        1. The page has a logical tab order
+        2. Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements.
+-->
+
+<body>
+    <header data-aos="fade-down">
+        <img src="img/logo1.png" alt="logo">
+        <div role="navigation" id="hamburguer">
+            <div id="barresTop"></div>
+            <div id="barresMiddle"></div>
+            <div id="barresBottom"></div>
+        </div>
+
+        <nav id="menu">
+            <ul>
+                <li><a tabindex="0" href="maquette.html">Maquette</a></li>
+                <li><a tabindex="1" href="page-alex.html">Alexandre Sticher</a></li>
+                <li><a tabindex="2" href="page-joao.html">Joao Araribá</a></li>
+                <li><a tabindex="3" href="galerie.html">Porte-folio</a></li>
+                <li><a tabindex="4" href="galerieBateaux.html">Bateaux</a></li>
+                <li><a tabindex="5" href="competitions.html">Compétitions</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section data-aos="fade-left" id="start">
+            <h2 tabindex="6">Qu'est ce que la voile?</h2>
+            <p tabindex="7">La voile ou le nautisme, est à la base un moyen de transport et de cargaison qui utilise le vent pour avancer. Utilisé même dans l’antiquité, depuis cette époque le domaine a beaucoup évolué, différents types de voiles et de coques ont été
+                confectionnés. De nos jours, les bateaux à voiles sont moins utilisés pour l’importation et l’exportation. Il est passé d’un moyen de transport à un sport d’équipe où la communication est un des éléments les plus importants.</p>
+            <img id="bateauVector" src="img/bateauVector.svg" alt="bateauVector">
+        </section>
+        <section id="section2" data-aos="fade-right">
+            <img src="img/imgWebp/professional-sailor-yachtsman-tights-tensions-cable-wire-rope-mechanical-winch-sailboat-yacht.webp" alt="boatMan">
+            <!-- Credit: https://www.freepik.com/photos/luxury-yacht Luxury yacht photo created by bublikhaus - www.freepik.com -->
+            <div>
+                <h2 tabindex="8">Comment ça marche ?</h2>
+                <p tabindex="9">Un bateau à voile avance grâce à la différence de pression faite par le vent dans le creux des voiles, à peu près comme les ailes d'un avion. Mais ça ne se fait pas tout seul, l'équipage doit régler les voiles pour que cet effet physique
+                    soit possible. Dans les compétitions, les réglages doivent être le plus optimisés possible. Chaque km/h compte, sauf que dans le domaine on utilise les nœuds comme unité de mesure pour la vitesse et les miles nautique pour la distance.
+                    Équilibrer le poids sur le bateau est aussi très important pour avoir un maximum de vitesse. Pour la voile de plaisance, tout est plus simple, car il n'y a pas besoin d'optimiser tous les réglages ni l'équilibre du bateau.
+                </p>
+            </div>
+        </section>
+        <aside>
+            <div id="btnDiv">
+                <h2 tabindex="10">Anecdote</h2>
+                <div id="flecheAnec"></div>
+            </div>
+            <p tabindex="11" id="anecdote">À bord d'un bateau, on ne dit jamais le mot "corde". Ce mot est trop général, on ne sait pas de quoi on parle, puisqu'il y a des dizaines de cordes sur un bateau. C'est pour ça que sur un bateau chaque corde a un nom spécifique, et elle est
+                souvent nommée par rapport à son utilité. Soit drisse, écoute, hale-bas, balancine, etc...</p>
+        </aside>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#357380" fill-opacity="1" d="M0,192L48,181.3C96,171,192,149,288,160C384,171,480,213,576,208C672,203,768,149,864,128C960,107,1056,117,1152,138.7C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+
+        <article>
+
+            <h2 tabindex="12" data-aos="fade-right">Différents domaines</h2>
+            <p tabindex="13" data-aos="fade-right">Les voiles ne sont pas utilisées seulement sur des bateaux. Il existe aussi des planches à voile, qui utilisent le même principe que les bateaux, mais on y trouve des grandes différences. Par exemple, on peut modifier l’angle du mât par rapport
+                à la planche pour changer la direction de la planche. Il y a aussi le kitesurf, avec toujours le même effet physique, une voile en arc de cercle plus petit qu’un parapente qui propulse le kitesurfeur sur la planche. Depuis une quarantaine
+                d’années, un nouveau système a commencé à avoir du succès : le foil. Une aile au niveau de la quille positionnée de façon à faire décoller l’engin aquatique dont il fait partie.
+            </p>
+            <nav data-aos="fade-up">
+                <a tabindex="14" href="quiz.html"><img src="img/play-button.png" alt="play-button">Faites le Quiz!</a>
+                <a tabindex="15" href="#start"><img src="img/goUpButton.png" alt="Return button">Remontez!</a>
+            </nav>
+
+            <img data-aos="fade-right" src="img/imgWebp/plancheVoile.webp" alt="plancheVoile" id="image">
+            <!-- Source : https://museeduleman.ch/category/news/?lang=en -->
+        </article>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#357380" fill-opacity="1" d="M0,224L80,208C160,192,320,160,480,170.7C640,181,800,235,960,229.3C1120,224,1280,160,1360,128L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
+    </main>
+    <footer>
+        <p tabindex="16">&copy; Joao Araribá & Alexandre Sticher</p>
+        <p tabindex="17">CFPT - Ecole d'Informatique</p>
+    </footer>
+
+    <script src="scripts/index.js"></script>
+    <script src="scripts/hambourguer.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+</body>
+
+</html>

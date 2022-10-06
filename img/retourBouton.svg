@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width tabindex="22"="100" height="100">
+	<title>Bitmap</title>
+	<defs>
+		<image  width tabindex="22"="62" height="73" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD4AAABJBAMAAACXyIgOAAAAAXNSR0IB2cksfwAAAA9QTFRFAAAACTarCTarCTarCTarvaCUIAAAAAV0Uk5TAI//YNOz7nz4AAABgUlEQVR4nKWU263EIAxEY9gCEBUE3y0Aoa0g6b+nKx4GbAKstPmKOGBmBsxxPH7mebh+54a7NQZcc7Xla4EKz5+43XDEpUFAXBpQX/CVwcjPBbcbjmuuI18YfEW+MKA23CY+N5jwXKDe8CxvbiDLmwvccbvh+CWfBADEz7W8kQPnQwDK9PJHgcr18h44Nu5gNGATv+4riRt6CHLF4EPiILmiipPrbWl00h7V8nN76WqJOK/xqtyWHx5gqGdGG3ERF52JJvncRD2TV+E8AKiZk30eoK2XJhQd/IQTN/ZMQtwxPkJQ5kMpP6RYVMfxu/gVBgzl4ItfYaDmcDw8IrZtTykwgaVa6OT1Aum+0bZW9EBo5eNEED2grzzXYksnXuIuPkOqTT/Cw2uXJArszWFtLkfc9dgRpqrd8VJ11WXS9RetzstreawU315iivtghlpiWrYQPQtl9CNaCDgG8bzQk3F7nofk/nl55u9Pqy7UJf6nm1bR/2mBn60ejNxTrMSt/QfLx1HGlDIhegAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Background" href="#img1" x="14" y="11"/>
+</svg>

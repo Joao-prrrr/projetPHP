@@ -1,0 +1,631 @@
+/* 
+    Projet : Voila! Website
+    Détail : CSS - Page principal
+    Auteur : Joao Araribá
+    Date : 17.05.02 v1
+*/
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    width: 100%;
+    font-size: 24px;
+    background: top no-repeat url(../img/backgroundBoat.jpg);
+    /* Source :  © YCM | Studio Borlenghi - https://yachtclubdemonaco.smugmug.com/Primo-Cup-Troph%C3%A9e-Credit-Suisse/HD-paid-download/i-tPpRQ4Z/A*/
+    background-size: 100%;
+}
+
+#menu {
+    position: fixed;
+    z-index: 2;
+    right: 0%;
+    height: 105px;
+    background: no-repeat url(../img/nav.png);
+}
+
+#menu a:hover {
+    transition: 0.2s ease;
+    border-bottom: solid 2px black;
+}
+
+header img {
+    height: 20%;
+    margin: .5em;
+    margin-left: 2em;
+}
+
+section {
+    padding: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 40%;
+}
+
+section:hover {
+    box-shadow: gray 0px 0px 50px -30px;
+}
+
+p {
+    font-size: 24px;
+}
+
+#bateauVector {
+    position: absolute;
+    right: 15%;
+    bottom: 20%;
+    width: 20%;
+    margin: 1em;
+    max-width: 350px;
+    /* margin-right: 2em; */
+}
+
+h2 {
+    font-size: 48px;
+    flex-basis: 60%;
+}
+
+img {
+    border-radius: 20px;
+}
+
+article {
+    color: white;
+    padding: 1.5em;
+    background-color: #357380;
+}
+
+article a {
+    color: white;
+}
+
+article>nav {
+    order: 2;
+    width: 40%;
+    height: auto;
+    display: flex;
+}
+
+article>nav a {
+    width: 45%;
+}
+
+svg {
+    margin: -1px 0 -1px 0;
+}
+
+
+/* Aside Anecdote */
+
+aside {
+    margin: 1.5em;
+    /* padding:  0 0 0 1em; */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 60%;
+    border-left: solid 2px black;
+}
+
+aside>div {
+    margin: 0 0 0 1em;
+    width: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+aside>div h2 {
+    margin: 0 1em 0 0;
+}
+
+#flecheAnec {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    top: 5%;
+    transition: 0.2s all ease;
+    /* width: 0px;
+    height: 0px;
+    border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 25px solid rgba(8, 67, 157, 0.9); */
+    background-color: transparent;
+    border: solid 5px rgba(8, 67, 157, 0.9);
+    /* background-color: rgba(8, 67, 157, 0.9); */
+    border-radius: 20px;
+}
+
+#anecdote {
+    transition: 0.2s all ease;
+    position: absolute;
+    left: -30000px;
+    top: 160%;
+}
+
+
+/* Smartphone */
+
+@media (max-width:768px) {
+    /* main{
+        padding: 1.5em;
+    } */
+    header {
+        transition: 0.4s all ease;
+        min-height: 100px;
+        width: 100%;
+        background: no-repeat url(../img/PrimoCupEdited.png);
+        background-color: rgb(255, 255, 255, 1);
+        background-size: 100%;
+    }
+    header img {
+        width: 40%;
+    }
+    #articleDiv {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    img {
+        margin: 1em 0 1em 0;
+        width: 100%;
+    }
+    h2 {
+        font-size: 240%;
+    }
+    #start p {
+        width: 100%;
+        order: 1;
+    }
+    #bateauVector {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        height: auto;
+        margin: 0;
+        width: 30%;
+        transform: rotate(-3.45deg);
+    }
+    p {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1em;
+    }
+    section {
+        margin: 0em 0 2em 0;
+        align-items: center;
+    }
+    section>div {
+        order: -1;
+    }
+    /* Aside - Anecdote */
+    aside {
+        width: 85%;
+    }
+    #btnDiv {
+        transition: 0.1ms ease-in all;
+        width: 65%;
+    }
+    article {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+    }
+    article h2 {
+        flex-basis: 100%;
+        text-align: center;
+    }
+    article a {
+        font-size: 20px;
+        text-align: center;
+        width: 40%;
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1em 0 0 0;
+    }
+    article>nav {
+        width: 100%;
+    }
+    a img {
+        margin: 0;
+        height: auto;
+        width: 70%;
+    }
+    /* Menu Burguer */
+    #hamburguer {
+        background-color: white;
+        width: 100px;
+        /* width: 80px; */
+        min-height: 70px;
+        max-height: 90px;
+        /* height: 80px; */
+        border-bottom-left-radius: 100px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0 2% 2%;
+    }
+    #barresMiddle,
+    #barresTop,
+    #barresBottom {
+        z-index: 2;
+        position: relative;
+        width: 40px;
+        /* width: 30px; */
+        /* height: 2px; */
+        margin: 5px;
+        border-radius: 10px;
+        border: solid 2px gray;
+        transition: all 0.4s ease;
+    }
+    #menu {
+        /* display: flex; */
+        z-index: 1;
+        display: none;
+        right: -300px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        background-image: none;
+        background-color: rgba(8, 67, 157, 0.9);
+        width: 100%;
+        height: 100%;
+        padding-top: 10%;
+        font-size: 30px;
+    }
+    #menu ul {
+        height: 100%;
+        width: 100%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #menu ul li {
+        border-bottom: solid 1px white;
+    }
+    #menu a {
+        color: #ffff;
+    }
+}
+
+
+/* Tablette */
+
+@media (min-width:769px) and (max-width:1311px) {
+    header {
+        transition: 0.4s all ease;
+        min-height: 200px;
+        width: 100%;
+        background: no-repeat url(../img/PrimoCupEdited.png);
+        background-color: rgb(255, 255, 255, 1);
+        background-size: 100%;
+    }
+    header img {
+        width: 25%;
+    }
+    #articleDiv {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    img {
+        margin: 1em 0 1em 0;
+        width: 100%;
+    }
+    header img {
+        width: 25%;
+    }
+    /* #start p {
+        width: 100%;
+        order: 1;
+    } */
+    #bateauVector {
+        position: relative;
+        right: 10%;
+        bottom: 0%;
+        margin: 0;
+        max-width: 362px;
+        min-width: 200px;
+        max-height: 388px;
+        min-height: 100px;
+        width: 30%;
+        height: 30%;
+        transform: rotate(-3.45deg);
+    }
+    p {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 1em;
+    }
+    section p {
+        font-size: 24px;
+        width: 50%;
+    }
+    section {
+        align-items: center;
+    }
+    section>div {
+        width: 50%;
+    }
+    section>div p {
+        width: 100%;
+    }
+    section img {
+        width: 40%;
+        min-width: 340px;
+        height: auto;
+        max-width: 491px;
+        min-width: 350px;
+        max-height: 327px;
+        min-height: 233px;
+        width: 45%;
+        height: 45%;
+    }
+    #btnDiv {
+        width: 65%;
+    }
+    /* article {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+    } */
+    article img {
+        margin: 0 1em 0 1em;
+        width: 50%;
+    }
+    article {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 30%;
+    }
+    article h2 {
+        flex-basis: 100%;
+        text-align: center;
+    }
+    article p {
+        width: 100%;
+        margin-left: 1em;
+        margin-right: 2em;
+    }
+    article a {
+        font-size: 20px;
+        text-align: center;
+        width: 20%;
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        align-self: center;
+        margin: 1em 0 0 0;
+    }
+    a img {
+        margin: 0;
+        height: auto;
+        width: 70%;
+    }
+    /* Menu Burguer */
+    #hamburguer {
+        background-color: white;
+        width: 100px;
+        /* width: 80px; */
+        min-height: 70px;
+        max-height: 90px;
+        /* height: 80px; */
+        border-bottom-left-radius: 100px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0 2% 2%;
+    }
+    #barresMiddle,
+    #barresTop,
+    #barresBottom {
+        z-index: 2;
+        position: relative;
+        width: 40px;
+        /* width: 30px; */
+        /* height: 2px; */
+        margin: 5px;
+        border-radius: 10px;
+        border: solid 2px gray;
+        transition: all 0.4s ease;
+    }
+    #menu {
+        /* display: flex; */
+        z-index: 1;
+        display: none;
+        right: -300px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        background-image: none;
+        background-color: rgba(8, 67, 157, 0.9);
+        width: 100%;
+        height: 100%;
+        padding-top: 10%;
+        font-size: 30px;
+    }
+    #menu ul {
+        height: 100%;
+        width: 100%;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #menu ul li {
+        border-bottom: solid 1px white;
+    }
+    #menu a {
+        color: #ffff;
+    }
+}
+
+
+/* Desktop */
+
+@media (min-width:1312px) and (max-width:1699px) {
+    section p {
+        font-size: 24px;
+        width: 50%;
+    }
+    section>div {
+        width: 49%;
+    }
+    section>div p {
+        width: 100%;
+    }
+    #menu ul {
+        margin: 10px 0 10px 20px;
+    }
+    #menu {
+        margin: 0 -10px 0 0;
+    }
+    #bateauVector {
+        bottom: 35%;
+    }
+    header {
+        height: 40%;
+    }
+    section img {
+        width: 49%;
+        height: auto;
+    }
+    /* Aside Anecdote */
+    aside {
+        padding: 0 0 0 1em;
+    }
+    article {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 30%;
+    }
+    article h2 {
+        flex-basis: 100%;
+    }
+    article p {
+        width: 45%;
+        margin-left: 1em;
+        margin-right: 2em;
+    }
+    article img {
+        margin: 0 1em 0 1em;
+        width: 45%;
+    }
+    article a {
+        order: 2;
+        width: 10%;
+        margin-left: 5em;
+        margin-right: 2em;
+        text-align: center;
+        font-size: 1.2em;
+    }
+    article a img {
+        width: 100%;
+    }
+    footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+/* Grand écrans */
+
+@media (min-width:1700px) {
+    section p {
+        font-size: 24px;
+        width: 50%;
+    }
+    #menu ul {
+        margin: 10px 0 10px 20px;
+    }
+    header {
+        height: 40%;
+        justify-content: space-between;
+    }
+    #menu {
+        margin: 0 -10px 0 0;
+        position: relative;
+    }
+    #bateauVector {
+        bottom: 40%;
+        left: 60%;
+    }
+    section img {
+        width: 40%;
+        height: auto;
+    }
+    section>div {
+        width: 49%;
+    }
+    section>div p {
+        width: 100%;
+    }
+    /* Aside Anecdote */
+    aside {
+        padding: 0 0 0 1em;
+    }
+    article {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 30%;
+    }
+    article h2 {
+        flex-basis: 100%;
+    }
+    article p {
+        width: 45%;
+        margin-left: 1em;
+        margin-right: 2em;
+    }
+    article img {
+        margin: 0 1em 0 1em;
+        width: 45%;
+    }
+    article a {
+        order: 2;
+        width: 10%;
+        margin-left: 5em;
+        margin-right: 2em;
+        text-align: center;
+        font-size: 1.2em;
+    }
+    article a img {
+        width: 100%;
+    }
+    footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
