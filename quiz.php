@@ -7,6 +7,26 @@ Auteur : Joao Araribá
 Date : 15.05.2022 v1
 -->
 
+<?php
+    // user's data
+    $fname = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
+    $birthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_SPECIAL_CHARS);
+    
+    // quiz data
+    $utilityBoat_resp = filter_input(INPUT_POST, 'premiereUtilite', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+    $forwardBoat_resp = filter_input(INPUT_POST, 'avanceBateau', FILTER_SANITIZE_STRING);
+    $nautism_resp = filter_input(INPUT_POST, 'nautismeResponse', FILTER_SANITIZE_STRING);
+    $mesurementUnit_resp = filter_input(INPUT_POST, 'uniteMesure', FILTER_SANITIZE_NUMBER_INT);
+    $nauticalMiles_resp = filter_input(INPUT_POST, 'millesNautique', FILTER_SANITIZE_STRING);
+    $otherSports_resp = filter_input(INPUT_POST, 'sportAutres', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
+    $windsurfDirection_resp = filter_input(INPUT_POST, 'directionPlanche', FILTER_SANITIZE_STRING);
+    $systemFoil_resp = filter_input(INPUT_POST, 'systemeFoil', FILTER_SANITIZE_STRING);
+    $bonus_resp = filter_input(INPUT_POST, 'motInterdit', FILTER_SANITIZE_STRING);
+    $comment_resp = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
+
+    
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,7 +44,7 @@ Date : 15.05.2022 v1
     </header>
 
     <main>
-        <form action="" method="GET">
+        <form action="" method="POST">
 
             <fieldset>
                 <legend>Petit sondage</legend>
@@ -36,8 +56,8 @@ Date : 15.05.2022 v1
                     </li>
 
                     <li>
-                        <label for="birthday">Date de naissance</label>
-                        <input tabindex="2" id="birthday" name="birthday" type="date">
+                        <label for="birthdate">Date de naissance</label>
+                        <input tabindex="2" id="birthdate" name="birthdate" type="date">
                     </li>
                 </ul>
             </fieldset>
