@@ -8,23 +8,34 @@ Date : 15.05.2022 v1
 -->
 
 <?php
+
+    // Requires
+    require_once("../controllers/quizController.php");
+
     // user's data
     $fname = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
     $birthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_SPECIAL_CHARS);
     
     // quiz data
-    $utilityBoat_resp = filter_input(INPUT_POST, 'premiereUtilite', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-    $forwardBoat_resp = filter_input(INPUT_POST, 'avanceBateau', FILTER_SANITIZE_STRING);
-    $nautism_resp = filter_input(INPUT_POST, 'nautismeResponse', FILTER_SANITIZE_STRING);
-    $mesurementUnit_resp = filter_input(INPUT_POST, 'uniteMesure', FILTER_SANITIZE_NUMBER_INT);
-    $nauticalMiles_resp = filter_input(INPUT_POST, 'millesNautique', FILTER_SANITIZE_STRING);
-    $otherSports_resp = filter_input(INPUT_POST, 'sportAutres', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-    $windsurfDirection_resp = filter_input(INPUT_POST, 'directionPlanche', FILTER_SANITIZE_STRING);
-    $systemFoil_resp = filter_input(INPUT_POST, 'systemeFoil', FILTER_SANITIZE_STRING);
-    $bonus_resp = filter_input(INPUT_POST, 'motInterdit', FILTER_SANITIZE_STRING);
+    $answers = [
+        "utilityBoat_resp" => filter_input(INPUT_POST, 'premiereUtilite', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
+        "forwardBoat_resp" => filter_input(INPUT_POST, 'avanceBateau', FILTER_SANITIZE_STRING),
+        "otherName_resp" => filter_input(INPUT_POST, 'nautismeResponse', FILTER_SANITIZE_STRING),
+        "mesurementUnit_resp" => filter_input(INPUT_POST, 'uniteMesure', FILTER_SANITIZE_NUMBER_INT),
+        "nauticalMiles_resp" => filter_input(INPUT_POST, 'millesNautique', FILTER_SANITIZE_STRING),
+        "otherSports_resp" => filter_input(INPUT_POST, 'sportAutres', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
+        "windsurfDirection_resp" => filter_input(INPUT_POST, 'directionPlanche', FILTER_SANITIZE_STRING),
+        "systemFoil_resp" => filter_input(INPUT_POST, 'systemeFoil', FILTER_SANITIZE_STRING),
+        "nautism_resp" => filter_input(INPUT_POST, 'motInterdit', FILTER_SANITIZE_STRING)
+    ];
+
+    // User's comments
     $comment_resp = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
 
-    
+    $points = validateQuiz($answers);
+
+    // var_dump();
+    echo $points;
 ?>
 
 <head>
@@ -234,8 +245,9 @@ Date : 15.05.2022 v1
         <p>&copy; Joao Araribá & Alexandre Sticher</p>
         <p>CFPT - Ecole d'Informatique</p>
     </footer>
+    <script src="../scripts/quiz.js"></script>
 
-    <!-- <script src="scripts/quiz.js"></script> -->
+    
 </body>
 
 </html>

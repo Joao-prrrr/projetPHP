@@ -163,7 +163,7 @@ function afficheTout() {
     afficheCorrectdirectionPlanche();
     afficheCorrectsystemeFoil();
     afficheCorrectMotInterdit();
-    affichePoints();
+    // affichePoints();
 }
 
 /**
@@ -223,7 +223,7 @@ function afficheCorrectpremiereUtilite() {
 
 
 /**
- * Affiche les reéponses corerctes de 'AvanceBateau'
+ * Affiche les réponses correctes de 'AvanceBateau'
  */
 function afficheCorrectAvanceBateau() {
     let resp = verifieAvanceBateau();
