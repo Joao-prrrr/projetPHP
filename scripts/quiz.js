@@ -1,6 +1,6 @@
 // Project : Voila! - Website
 // Details : JavaScript - Quiz
-// Auth tabindex="22"or : Joao Araribá
+// Author : Joao Araribá
 // Date   : 25.04.2022 v1
 
 //Constantes Html Elements ------------
