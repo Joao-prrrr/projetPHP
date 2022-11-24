@@ -1,6 +1,11 @@
 <?php
 
-// Correct answers
+/**
+ * Validate all the responses.
+ *
+ * @param array $answers - The users anwsers.
+ * @return integer Returns the user's points.
+ */
 function validateQuiz(array $answers) : int{
     $correctResps = [
         "utilityBoat_resp" => ["colonisations", "cargaison"],

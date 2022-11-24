@@ -33,9 +33,6 @@ Date : 15.05.2022 v1
     $comment_resp = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
 
     $points = validateQuiz($answers);
-
-    // var_dump();
-    echo $points;
 ?>
 
 <head>
@@ -73,8 +70,12 @@ Date : 15.05.2022 v1
                 </ul>
             </fieldset>
 
-            <h1 id="start">Quizz!</h1>
-
+            
+            <h1 style="text-align:center; flex-basis:100%" id="start">Quizz!</h1>
+            
+            <?php if($_SERVER["REQUEST_METHOD"] == "POST"){ ?>
+                <p style="border-bottom: solid green 2px; text-align: center; font-size: 1.5em; margin:1em" > Vous avez eu <?= $points ?> point.s </p>
+            <?php }?>
             <fieldset>
                 <legend>Quelles étaient les premières utilités du bateau à voile ?</legend>
                 <ul>
@@ -246,8 +247,9 @@ Date : 15.05.2022 v1
         <p>CFPT - Ecole d'Informatique</p>
     </footer>
     <script src="../scripts/quiz.js"></script>
-
-    
+    <?php if($_SERVER["REQUEST_METHOD"] == "POST"){ ?>
+        <script> afficheTout() </script>
+    <?php }?>
 </body>
 
 </html>
