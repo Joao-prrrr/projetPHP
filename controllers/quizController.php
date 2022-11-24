@@ -1,5 +1,43 @@
 <?php
 
+require_once("../models/Quiz.php");
+
+$errors = [];
+
+function submitQuiz(array $userArray, array $answers, string $userComment) : int {
+    verifySecurities($userArray, $answers, $userComment);
+    $points = validateQuiz($answers);
+
+    // add in db
+
+    if(!$errors){
+        
+    }
+
+    return $points;
+}
+
+/**
+ * Verify if the inputs are safes.
+ *
+ * @param array $userArray - the user's array which contains user's informations.
+ * @param array $answers - Answers of the quiz.
+ * @param string $userComment - Uses comment about the quiz.
+ * @return void
+ */
+function verifySecurities(array $userArray, array $answers, string $userComment) {
+    global $errors;
+    if(!$userArray["username"]) {
+        array_push($errors, "The username must not be empty and must contains only letters.");
+    }
+    if(!$answers["otherName_resp"]){
+        array_push($errors, "Responses must contains only letters.");
+    }
+    if(!$userComment) {
+        array_push($errors, "The comment must constains only letters.");
+    }
+}
+
 /**
  * Validate all the responses.
  *

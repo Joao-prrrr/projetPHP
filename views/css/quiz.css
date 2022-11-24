@@ -159,6 +159,25 @@ input[type="text"] {
     -webkit-appearance: none;
 }
 
+.errors {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    text-align: center;
+
+    padding: 1em;
+    margin: 1em;
+    color: white;
+
+    background-color: rgb(169, 51, 51);
+    border: solid red 2px;
+}
+
+.errors p {
+    margin: 0;
+}
+
 input[type='button'],
 input[type='submit'],
 input[type='reset'] {

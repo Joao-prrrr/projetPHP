@@ -2,6 +2,11 @@
 
 require_once("constants.php");
 
+/**
+ * Connect to the database
+ *
+ * @return PDO - PDO object (db connection)
+ */
 function connectionBdd() : PDO {
     static $pdo = null;
 
@@ -17,3 +22,5 @@ function connectionBdd() : PDO {
     }
     return $pdo;
 }
+
+$db = connectionBdd();
