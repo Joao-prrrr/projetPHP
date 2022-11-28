@@ -22,18 +22,18 @@ Date : 15.05.2022 v1
     // quiz data
     $answers = [
         "utilityBoat_resp" => filter_input(INPUT_POST, 'premiereUtilite', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
-        "forwardBoat_resp" => filter_input(INPUT_POST, 'avanceBateau', FILTER_SANITIZE_STRING),
-        "otherName_resp" => filter_input(INPUT_POST, 'nautismeResponse', FILTER_SANITIZE_STRING),
-        "mesurementUnit_resp" => filter_input(INPUT_POST, 'uniteMesure', FILTER_SANITIZE_NUMBER_INT),
-        "nauticalMiles_resp" => filter_input(INPUT_POST, 'millesNautique', FILTER_SANITIZE_STRING),
-        "otherSports_resp" => filter_input(INPUT_POST, 'sportAutres', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
-        "windsurfDirection_resp" => filter_input(INPUT_POST, 'directionPlanche', FILTER_SANITIZE_STRING),
-        "systemFoil_resp" => filter_input(INPUT_POST, 'systemeFoil', FILTER_SANITIZE_STRING),
-        "nautism_resp" => filter_input(INPUT_POST, 'motInterdit', FILTER_SANITIZE_STRING)
+        "forwardBoat_resp" => filter_input(INPUT_POST, 'avanceBateau', FILTER_SANITIZE_SPECIAL_CHARS),
+        "otherName_resp" => filter_input(INPUT_POST, 'nautismeResponse', FILTER_SANITIZE_SPECIAL_CHARS),
+        "speedUnity_resp" => filter_input(INPUT_POST, 'uniteMesure', FILTER_SANITIZE_NUMBER_INT),
+        "nauticMiles_resp" => filter_input(INPUT_POST, 'millesNautique', FILTER_SANITIZE_SPECIAL_CHARS),
+        "othersSailSports_resp" => filter_input(INPUT_POST, 'sportAutres', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
+        "windSurfDirection_resp" => filter_input(INPUT_POST, 'directionPlanche', FILTER_SANITIZE_SPECIAL_CHARS),
+        "foil_resp" => filter_input(INPUT_POST, 'systemeFoil', FILTER_SANITIZE_SPECIAL_CHARS),
+        "nautism_resp" => filter_input(INPUT_POST, 'motInterdit', FILTER_SANITIZE_SPECIAL_CHARS)
     ];
 
     // User's comments
-    $comment_resp = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_STRING);
+    $comment_resp = filter_input(INPUT_POST, 'comment', FILTER_SANITIZE_SPECIAL_CHARS);
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){    
         $points = submitQuiz($userData, $answers, $comment_resp);

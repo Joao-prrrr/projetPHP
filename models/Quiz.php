@@ -1,64 +1,83 @@
 <?php
 
 require_once("../db.php");
-global $db;
-
 
 /**
- * Insert a user in the datebase
+ * Insert the answers into the database.
  *
- * @param array $userInfo - user's info array
- * @return boolean - true or false if it's done correctly
+ * @param array $answers - A array with all the user's answers.
+ * @return array - Return the errors if there are..
  */
-function InsertUser(array $userInfo) : bool{
-    $sqlQuery = "INSERT INTO voilaSiteWeb.user (fname, birthdate) VALUES (:username, :birthdate)";
+function InsertAnswers(array $answers, string $userComment) : string | array {
+    $errors = verifySecuritiesAnswers($answers, $userComment);
 
-    $statement = $db->prepare($sqlQuery);
+    if(!$errors){
 
-    $params = [":username" => $userInfo["username"], ":birthdate" => $userInfo["birthdate"]];
-    $statement->execute($params);
+        global $db;
+        $userId = 8;
+        // $userId = $db->lastInsertId();
+    
+        $sqlQuery = "INSERT INTO voilaSiteWeb.quizReponses
+        (responsesDate,
+        fk_userId,
+        utilityBoat_resp,
+        forwardBoat_resp,
+        otherName_resp,
+        speedUnity_resp,
+        nauticMiles_resp,
+        othersSailSports_resp,
+        windSurfDirection_resp,
+        foil_resp,
+        nautism_resp,
+        comments_resp) VALUES
+        (
+        :responsesDate,
+        :fk_userId,
+        :utilityBoat_resp,
+        :forwardBoat_resp,
+        :otherName_resp,
+        :speedUnity_resp,
+        :nauticMiles_resp,
+        :othersSailSports_resp,
+        :windSurfDirection_resp,
+        :foil_resp,
+        :nautism_resp,
+        :comments_resp
+        )";
+    
+        $statement = $db->prepare($sqlQuery);
+    
+        $params = [':responsesDate' => time(), ":fk_userId," => $userId];
+        foreach($answers as $key => $answer) {
+            $params[":$key"] = $answer;
+        }
+        $params[':comments_resp'] = $userComment;
+    
+        $statementStats =  $statement->execute($params);
+
+        if(!$statementStats) {
+            return "Can't connect to the database. Try again later.";
+        }else return false;
+    } else {
+        return $errors;
+    }
+
 }
 
-function InsertAnswers(array $answers) : bool {
-    $userId = $db->lastInsertId();
-
-    $sqlQuery = "INSERT INTO voilaSiteWeb.quizResponses
-    (`responsesDate`,
-    `fk_userId`,
-    `utilityBoat_resp`,
-    `forwardBoat_resp`,
-    `otherName_resp`,
-    `speedUnity_resp`,
-    `knots_resp`,
-    `othersSailSports_resp`,
-    `windSurfDirection_resp`,
-    `foil_resp`,
-    `nautism_resp`,
-    `comments_resp`) VALUES
-    (:responsesDate,
-    :fk_userId,
-    :utilityBoat_resp,
-    :forwardBoat_resp,
-    :otherName_resp,
-    :speedUnity_resp,
-    :knots_resp,
-    :othersSailSports_resp,
-    :windSurfDirection_resp,
-    :foil_resp,
-    :nautism_resp,
-    :comments_resp
-    )";
-
-    $statement = $db->prepare($sqlQuery);
-
-    $params = [
-        ":responsesDate" => time(),
-        ":fk_userId," => $userId,
-        ":utilityBoat_resp" => $answers["utilityBoat_resp"],
-        ":forwardBoat_resp" => $answers["forwardBoat_resp"],
-        ":otherName_resp" => $answers["otherName_resp"],
-        ":speedUnity_resp" => $answers["speedUnity_resp"],
-        ":knots_resp" => $answers["knots_resp"]
-];
-    $statement->execute($params);
+/**
+ * Verify if the inputs are safes.
+ *
+ * @param array $answers - Answers of the quiz.
+ * @param string $userComment - Uses comment about the quiz.
+ * @return void
+ */
+function verifySecuritiesAnswers(array $answers, string $userComment) {
+    $errors = [];
+    if(!$answers["otherName_resp"]){
+        array_push($errors, "Responses must contains only letters.");
+    }
+    if(!$userComment) {
+        array_push($errors, "The comment must constains only letters.");
+    }
+    return $errors;
 }

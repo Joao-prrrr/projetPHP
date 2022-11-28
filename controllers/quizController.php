@@ -1,41 +1,24 @@
 <?php
-
-require_once("../models/Quiz.php");
-
 $errors = [];
 
+require_once("../models/Quiz.php");
+require_once("../models/User.php");
+
+
 function submitQuiz(array $userArray, array $answers, string $userComment) : int {
-    verifySecurities($userArray, $answers, $userComment);
+    
     $points = validateQuiz($answers);
+    $insertErrors = InsertUser($userArray, $points);
+    $insertAnswersErrors = InsertAnswers($answers, $userComment);
 
-    // add in db
-
-    if(!$errors){
-        
+    if(count($insertErrors) > 0) {
+        array_push($errors, $insertErrors);
+    }
+    if(count($insertAnswersErrors) > 0) {
+        array_push($errors, $insertAnswersErrors);
     }
 
     return $points;
-}
-
-/**
- * Verify if the inputs are safes.
- *
- * @param array $userArray - the user's array which contains user's informations.
- * @param array $answers - Answers of the quiz.
- * @param string $userComment - Uses comment about the quiz.
- * @return void
- */
-function verifySecurities(array $userArray, array $answers, string $userComment) {
-    global $errors;
-    if(!$userArray["username"]) {
-        array_push($errors, "The username must not be empty and must contains only letters.");
-    }
-    if(!$answers["otherName_resp"]){
-        array_push($errors, "Responses must contains only letters.");
-    }
-    if(!$userComment) {
-        array_push($errors, "The comment must constains only letters.");
-    }
 }
 
 /**
