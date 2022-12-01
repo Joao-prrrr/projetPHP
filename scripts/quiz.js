@@ -25,7 +25,7 @@ const avanceBateau = [
     document.getElementById("courants"),
     document.getElementById("tensionQuille"),
     document.getElementById("depressionVoile"),
-    document.getElementById("daufins")
+    document.getElementById("dauphins")
 ];
 //Input 'nautisme'
 const nautisme = document.getElementById("nautismeResponse");

@@ -6,16 +6,44 @@ require_once("../models/User.php");
 
 
 function submitQuiz(array $userArray, array $answers, string $userComment) : int {
-    
+    global $errors;
+
     $points = validateQuiz($answers);
+
+    foreach ($answers as $key => $resp) {
+        try {
+            //code...
+            if($key === "utilityBoat_resp" || $key === "othersSailSports_resp"){
+                if(count($resp) == 2)
+                $answers[$key] = $resp[0].", ".$resp[1];
+                else if(count($resp) == 3)
+                $answers[$key] = $resp[0].", ".$resp[1].", ".$resp[2];
+                else if(count($resp) == 4)
+                $answers[$key] = $resp[0].", ".$resp[1].", ".$resp[2].", ".$resp[3];
+                else
+                $answers[$key] = $resp[0];
+                
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            $answers[$key] = "";
+        }
+    }
+
     $insertErrors = InsertUser($userArray, $points);
     $insertAnswersErrors = InsertAnswers($answers, $userComment);
 
-    if(count($insertErrors) > 0) {
-        array_push($errors, $insertErrors);
+    if($insertErrors) {
+        foreach ($insertErrors as $key => $value) {
+            # code...
+            array_push($errors, $value);
+        }
     }
-    if(count($insertAnswersErrors) > 0) {
-        array_push($errors, $insertAnswersErrors);
+    if($insertAnswersErrors) {
+        foreach ($insertAnswersErrors as $key => $value) {
+            # code...
+            array_push($errors, $value);
+        }
     }
 
     return $points;
@@ -32,11 +60,11 @@ function validateQuiz(array $answers) : int{
         "utilityBoat_resp" => ["colonisations", "cargaison"],
         "forwardBoat_resp" => "depressionVoile",
         "otherName_resp" => "nautisme",
-        "mesurementUnit_resp" => 2,
-        "nauticalMiles_resp" => "millesNautiques",
-        "otherSports_resp" => ["kitesurf", "plancheVoile"],
-        "windsurfDirection_resp" => "mat",
-        "systemFoil_resp" => "foil",
+        "speedUnity_resp" => "2",
+        "nauticMiles_resp" => "millesNautiques",
+        "othersSailSports_resp" => ["kitesurf", "plancheVoile"],
+        "windSurfDirection_resp" => "mat",
+        "foil_resp" => "foil",
         "nautism_resp" => "nautisme"
     ];
 

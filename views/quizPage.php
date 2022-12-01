@@ -24,7 +24,7 @@ Date : 15.05.2022 v1
         "utilityBoat_resp" => filter_input(INPUT_POST, 'premiereUtilite', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
         "forwardBoat_resp" => filter_input(INPUT_POST, 'avanceBateau', FILTER_SANITIZE_SPECIAL_CHARS),
         "otherName_resp" => filter_input(INPUT_POST, 'nautismeResponse', FILTER_SANITIZE_SPECIAL_CHARS),
-        "speedUnity_resp" => filter_input(INPUT_POST, 'uniteMesure', FILTER_SANITIZE_NUMBER_INT),
+        "speedUnity_resp" => strval(filter_input(INPUT_POST, 'uniteMesure', FILTER_SANITIZE_NUMBER_INT)),
         "nauticMiles_resp" => filter_input(INPUT_POST, 'millesNautique', FILTER_SANITIZE_SPECIAL_CHARS),
         "othersSailSports_resp" => filter_input(INPUT_POST, 'sportAutres', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
         "windSurfDirection_resp" => filter_input(INPUT_POST, 'directionPlanche', FILTER_SANITIZE_SPECIAL_CHARS),
@@ -66,12 +66,12 @@ Date : 15.05.2022 v1
                 <ul>
                     <li>
                         <label for="name">Prénom :</label>
-                        <input tabindex="1" id="name" name="name" type="text">
+                        <input tabindex="1" id="name" name="name" type="text" value="<?= $userData['username'] ?>">
                     </li>
 
                     <li>
                         <label for="birthdate">Date de naissance</label>
-                        <input tabindex="2" id="birthdate" name="birthdate" type="date">
+                        <input tabindex="2" value="<?= $userData['birthdate'] ?>" id="birthdate" name="birthdate" pattern="\d{4}-\d{2}-\d{2}" type="date">
                     </li>
                 </ul>
             </fieldset>
@@ -80,7 +80,7 @@ Date : 15.05.2022 v1
             <h1 style="text-align:center; flex-basis:100%" id="start">Quizz!</h1>
             
             <?php if($_SERVER["REQUEST_METHOD"] == "POST" && !$errors){ ?>
-                <p style="border-bottom: solid green 2px; text-align: center; font-size: 1.5em; margin:1em" > Vous avez eu <?= $points ?> point.s </p>
+                <p style="border-bottom: solid green 2px; text-align: center; font-size: 1.5em; margin:1em" > Vous avez eu <?= $points ?> point.s sur 9</p>
             <?php }?>
 
             <?php if($errors) include("errors.php"); ?>
@@ -89,7 +89,7 @@ Date : 15.05.2022 v1
                 <legend>Quelles étaient les premières utilités du bateau à voile ?</legend>
                 <ul>
                     <li class="liBasis100">
-                        <input tabindex="3" type="checkbox" name="premiereUtilite[]" id="colonisations" value="colonisations">
+                        <input tabindex="3" type="checkbox" name="premiereUtilite[]" id="colonisations" value="colonisations" >
                         <label for="colonisations">Pour les colonisations</label>
                     </li>
 
@@ -116,29 +116,29 @@ Date : 15.05.2022 v1
                 <!-- Comment avance un bateau à voile? -->
                 <ul>
                     <li class="liBasis100">
-                        <input tabindex="7" type="radio" name="avanceBateau" id="courants" value="courants">
+                        <input tabindex="7" type="radio" name="avanceBateau" id="courants" value="courants" <?= $answers['forwardBoat_resp'] === "courants" ? "checked" : "" ?> >
                         <label for="courants">Les courants emportent le bateau</label>
                     </li>
 
                     <li class="liBasis100">
-                        <input tabindex="8" type="radio" name="avanceBateau" id="tensionQuille" value="tensionQuille">
+                        <input tabindex="8" type="radio" name="avanceBateau" id="tensionQuille" value="tensionQuille" <?= $answers['forwardBoat_resp'] === "tensionQuille" ? "checked" : "" ?>>
                         <label for="tensionQuille">Grâce à la tension du courant contre la quille</label>
                     </li>
 
                     <li class="liBasis100">
-                        <input tabindex="9" type="radio" name="avanceBateau" id="depressionVoile" value="depressionVoile">
+                        <input tabindex="9" type="radio" name="avanceBateau" id="depressionVoile" value="depressionVoile" <?= $answers['forwardBoat_resp'] === "depressionVoile" ? "checked" : "" ?>>
                         <label for="depressionVoile">Grâce à la dépression faite dans la voile par le vent</label>
                     </li>
 
                     <li class="liBasis100">
-                        <input tabindex="10" type="radio" name="avanceBateau" id="daufins" value="daufins">
-                        <label for="daufins">Les daufins poussent le bateau</label>
+                        <input tabindex="10" type="radio" name="avanceBateau" id="dauphins" value="dauphins" <?= $answers['forwardBoat_resp'] === "dauphins" ? "checked" : "" ?>>
+                        <label for="dauphins">Les dauphins poussent le bateau</label>
                     </li>
                 </ul>
                 <!-- Quel unité utilise-t-on, dans un bateau, pour mesurer la distance? -->
                 <!--  -->
                 <label for="nautismeResponse">Quel autre nom utilise-t-on quand on parle de bateau et navigation ?</label>
-                <input tabindex="11" id="nautismeResponse" type="text" name="nautismeResponse" style="width: 50%;">
+                <input tabindex="11" id="nautismeResponse" type="text" name="nautismeResponse" style="width: 50%;" value="<?= $answers['otherName_resp'] ?>" >
             </fieldset>
 
             <fieldset>
@@ -152,16 +152,16 @@ Date : 15.05.2022 v1
 
                 </div>
                 <div id="rangeInput">
-                    <input tabindex="12" type="range" name="uniteMesure" id="uniteMesure" value="0" min="0" max="3">
+                    <input tabindex="12" type="range" name="uniteMesure" id="uniteMesure" value="<?= $_SERVER['REQUEST_METHOD'] === 'POST' ? $answers['speedUnity_resp'] : "0" ?>" min="0" max="3">
                 </div>
 
                 <div id="secondQuesiton">
                     <label for="millesNautique"><em>On dit pas des kilomètres, on dit des...</em></label>
                     <select tabindex="13" name="millesNautique" id="millesNautique">
-                       <option value="milles">Milles</option>
-                       <option value="noeuds"> Noeuds</option>
-                       <option value="millesNautiques">Milles Nautique</option>
-                       <option value="metres">Mètres</option>
+                       <option <?= $answers['nauticMiles_resp'] === "milles" ? "selected" : "" ?> value="milles">Milles</option>
+                       <option <?= $answers['nauticMiles_resp'] === "noeuds" ? "selected" : "" ?> value="noeuds"> Noeuds</option>
+                       <option <?= $answers['nauticMiles_resp'] === "millesNautiques" ? "selected" : "" ?> value="millesNautiques">Milles Nautique</option>
+                       <option <?= $answers['nauticMiles_resp'] === "metres" ? "selected" : "" ?> value="metres">Mètres</option>
                    </select>
                 </div>
             </fieldset>
@@ -171,27 +171,27 @@ Date : 15.05.2022 v1
 
                 <ul class="row">
                     <li class="liBasis25">
-                        <input tabindex="14" type="checkbox" name="sportAutres[]" id="surf" value="surf">
+                        <input tabindex="14" type="checkbox" name="sportAutres[]" id="surf" value="surf" <?= $answers['othersSailSports_resp'] === "surf" ? "checked" : "" ?>>
                         <label for="surf">Surf</label>
                     </li>
 
                     <li class="liBasis25">
-                        <input tabindex="15" value="kitesurf" type="checkbox" name="sportAutres[]" id="kitesurf">
+                        <input tabindex="15" value="kitesurf" type="checkbox" name="sportAutres[]" id="kitesurf" <?= $answers['othersSailSports_resp'] === "kitesurf" ? "checked" : "" ?>>
                         <label for="kitesurf">Kitesurf</label>
                     </li>
 
                     <li class="liBasis25">
-                        <input tabindex="16" value="foil" type="checkbox" name="sportAutres[]" id="foil">
+                        <input tabindex="16" value="foil" type="checkbox" name="sportAutres[]" id="foil" <?= $answers['othersSailSports_resp'] === "foil" ? "checked" : "" ?>>
                         <label for="foil">Foil</label>
                     </li>
 
                     <li class="liBasis25">
-                        <input tabindex="17" type="checkbox" name="sportAutres[]" id="skiNautique">
+                        <input tabindex="17" type="checkbox" name="sportAutres[]" id="skiNautique" <?= $answers['othersSailSports_resp'] === "skiNautique" ? "checked" : "" ?>>
                         <label for="skiNautique">Ski Nautique</label>
                     </li>
 
                     <li class="liBasis25">
-                        <input tabindex="18" value="plancheVoile" type="checkbox" name="sportAutres[]" id="plancheVoile">
+                        <input tabindex="18" value="plancheVoile" type="checkbox" name="sportAutres[]" id="plancheVoile" <?= $answers['othersSailSports_resp'] === "plancheVoile" ? "checked" : "" ?>>
                         <label for="plancheVoile">Planche à voile</label>
                     </li>
                 </ul>

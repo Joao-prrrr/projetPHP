@@ -6,16 +6,16 @@ require_once("../db.php");
  * Insert the answers into the database.
  *
  * @param array $answers - A array with all the user's answers.
- * @return array - Return the errors if there are..
+ * @return array - Return the errors if there are.
  */
-function InsertAnswers(array $answers, string $userComment) : string | array {
-    $errors = verifySecuritiesAnswers($answers, $userComment);
+function InsertAnswers(array $answers, string $userComment) : bool | array {
+    $err = verifySecuritiesAnswers($answers, $userComment);
 
-    if(!$errors){
+    if(!$err){
 
-        global $db;
-        $userId = 8;
-        // $userId = $db->lastInsertId();
+        $db = connectionBdd();
+        // $userId = 8;
+        $userId = $db->lastInsertId();
     
         $sqlQuery = "INSERT INTO voilaSiteWeb.quizReponses
         (responsesDate,
@@ -47,7 +47,7 @@ function InsertAnswers(array $answers, string $userComment) : string | array {
     
         $statement = $db->prepare($sqlQuery);
     
-        $params = [':responsesDate' => time(), ":fk_userId," => $userId];
+        $params = [':responsesDate' => date("Y-m-d H:i:s"), ":fk_userId" => intval($userId)];
         foreach($answers as $key => $answer) {
             $params[":$key"] = $answer;
         }
@@ -59,7 +59,7 @@ function InsertAnswers(array $answers, string $userComment) : string | array {
             return "Can't connect to the database. Try again later.";
         }else return false;
     } else {
-        return $errors;
+        return $err;
     }
 
 }
@@ -73,11 +73,13 @@ function InsertAnswers(array $answers, string $userComment) : string | array {
  */
 function verifySecuritiesAnswers(array $answers, string $userComment) {
     $errors = [];
-    if(!$answers["otherName_resp"]){
-        array_push($errors, "Responses must contains only letters.");
+    $containsErr = false;
+
+    foreach ($answers as $key => $resps) {
+        # code...
+        if($resps === "" || !$resps)
+        $containsErr = true;
     }
-    if(!$userComment) {
-        array_push($errors, "The comment must constains only letters.");
-    }
+    if($containsErr) array_push($errors, "Responses must not be empty.");
     return $errors;
 }
