@@ -27,7 +27,7 @@ CREATE TABLE quizReponses
     othersSailSports_resp varchar(25) not null,
     windSurfDirection_resp varchar(50) not null,
     foil_resp varchar(20) not null,
-    nautism_resp varchar(20) not null,
+    wrongWord_resp varchar(20) not null,
     comments_resp text not null,
     primary key (responsesDate, fk_userId),
     foreign key (fk_userId) REFERENCES user(id)

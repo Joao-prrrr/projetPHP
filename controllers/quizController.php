@@ -57,15 +57,15 @@ function submitQuiz(array $userArray, array $answers, string $userComment) : int
  */
 function validateQuiz(array $answers) : int{
     $correctResps = [
-        "utilityBoat_resp" => ["colonisations", "cargaison"],
+        "utilityBoat_resp" => [0 => "colonisations", 1 => "cargaison"],
         "forwardBoat_resp" => "depressionVoile",
         "otherName_resp" => "nautisme",
         "speedUnity_resp" => "2",
         "nauticMiles_resp" => "millesNautiques",
-        "othersSailSports_resp" => ["kitesurf", "plancheVoile"],
+        "othersSailSports_resp" => [0 => "kitesurf", 1 => "plancheVoile"],
         "windSurfDirection_resp" => "mat",
         "foil_resp" => "foil",
-        "nautism_resp" => "nautisme"
+        "wrongWord_resp" => "corde"
     ];
 
     $points = 0;

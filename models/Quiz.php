@@ -28,7 +28,7 @@ function InsertAnswers(array $answers, string $userComment) : bool | array {
         othersSailSports_resp,
         windSurfDirection_resp,
         foil_resp,
-        nautism_resp,
+        wrongWord_resp,
         comments_resp) VALUES
         (
         :responsesDate,
@@ -41,7 +41,7 @@ function InsertAnswers(array $answers, string $userComment) : bool | array {
         :othersSailSports_resp,
         :windSurfDirection_resp,
         :foil_resp,
-        :nautism_resp,
+        :wrongWord_resp,
         :comments_resp
         )";
     

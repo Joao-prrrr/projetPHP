@@ -29,7 +29,7 @@ Date : 15.05.2022 v1
         "othersSailSports_resp" => filter_input(INPUT_POST, 'sportAutres', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY),
         "windSurfDirection_resp" => filter_input(INPUT_POST, 'directionPlanche', FILTER_SANITIZE_SPECIAL_CHARS),
         "foil_resp" => filter_input(INPUT_POST, 'systemeFoil', FILTER_SANITIZE_SPECIAL_CHARS),
-        "nautism_resp" => filter_input(INPUT_POST, 'motInterdit', FILTER_SANITIZE_SPECIAL_CHARS)
+        "wrongWord_resp" => filter_input(INPUT_POST, 'motInterdit', FILTER_SANITIZE_SPECIAL_CHARS)
     ];
 
     // User's comments
@@ -37,6 +37,7 @@ Date : 15.05.2022 v1
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){    
         $points = submitQuiz($userData, $answers, $comment_resp);
+        // var_dump($answers);
     }
 
 ?>
@@ -71,7 +72,7 @@ Date : 15.05.2022 v1
 
                     <li>
                         <label for="birthdate">Date de naissance</label>
-                        <input tabindex="2" value="<?= $userData['birthdate'] ?>" id="birthdate" name="birthdate" pattern="\d{4}-\d{2}-\d{2}" type="date">
+                        <input tabindex="2" value="<?= isset($userData['birthdate']) ? $userData['birthdate'] : "2022-12-08" ?>" id="birthdate" name="birthdate" pattern="\d{4}-\d{2}-\d{2}" type="date">
                     </li>
                 </ul>
             </fieldset>
@@ -89,21 +90,21 @@ Date : 15.05.2022 v1
                 <legend>Quelles étaient les premières utilités du bateau à voile ?</legend>
                 <ul>
                     <li class="liBasis100">
-                        <input tabindex="3" type="checkbox" name="premiereUtilite[]" id="colonisations" value="colonisations" >
+                        <input tabindex="3" type="checkbox" name="premiereUtilite[]" id="colonisations" value="colonisations" <?= $answers['utilityBoat_resp'] === null || !in_array("colonisations", $answers['utilityBoat_resp']) ? "" : "checked" ?> >
                         <label for="colonisations">Pour les colonisations</label>
                     </li>
 
                     <li class="liBasis100">
-                        <input tabindex="4" type="checkbox" name="premiereUtilite[]" id="moyenTransport" value="moyenTransport">
+                        <input tabindex="4" type="checkbox" name="premiereUtilite[]" id="moyenTransport" value="moyenTransport" <?= $answers['utilityBoat_resp'] === null || !in_array("moyenTransport", $answers['utilityBoat_resp']) ? "" : "checked" ?>>
                         <label for="moyenTransport">Moyen de transport</label>
                     </li>
                     <li class="liBasis100">
-                        <input tabindex="5" type="checkbox" name="premiereUtilite[]" id="fetes" value="fetes">
+                        <input tabindex="5" type="checkbox" name="premiereUtilite[]" id="fetes" value="fetes" <?= $answers['utilityBoat_resp'] === null || !in_array("fetes", $answers['utilityBoat_resp']) ? "" : "checked" ?>>
                         <label for="fetes">Faire des fêtes entre amis</label>
                     </li>
 
                     <li class="liBasis100">
-                        <input tabindex="6" type="checkbox" name="premiereUtilite[]" id="cargaison" value="cargaison">
+                        <input tabindex="6" type="checkbox" name="premiereUtilite[]" id="cargaison" value="cargaison" <?= $answers['utilityBoat_resp'] === null || !in_array("cargaison", $answers['utilityBoat_resp']) ? "" : "checked" ?>>
                         <label for="cargaison">Cargaison</label>
                     </li>
                 </ul>
@@ -171,27 +172,27 @@ Date : 15.05.2022 v1
 
                 <ul class="row">
                     <li class="liBasis25">
-                        <input tabindex="14" type="checkbox" name="sportAutres[]" id="surf" value="surf" <?= $answers['othersSailSports_resp'] === "surf" ? "checked" : "" ?>>
+                        <input tabindex="14" type="checkbox" name="sportAutres[]" id="surf" value="surf" <?= $answers['othersSailSports_resp'] === null || !in_array("surf", $answers['othersSailSports_resp']) ? "" : "checked" ?>>
                         <label for="surf">Surf</label>
                     </li>
 
                     <li class="liBasis25">
-                        <input tabindex="15" value="kitesurf" type="checkbox" name="sportAutres[]" id="kitesurf" <?= $answers['othersSailSports_resp'] === "kitesurf" ? "checked" : "" ?>>
+                        <input tabindex="15" value="kitesurf" type="checkbox" name="sportAutres[]" id="kitesurf" <?= $answers['othersSailSports_resp'] === null || !in_array("kitesurf",$answers['othersSailSports_resp']) ? "" : "checked" ?>>
                         <label for="kitesurf">Kitesurf</label>
                     </li>
 
                     <li class="liBasis25">
-                        <input tabindex="16" value="foil" type="checkbox" name="sportAutres[]" id="foil" <?= $answers['othersSailSports_resp'] === "foil" ? "checked" : "" ?>>
+                        <input tabindex="16" value="foil" type="checkbox" name="sportAutres[]" id="foil" <?= $answers['othersSailSports_resp'] === null || !in_array("foil",$answers['othersSailSports_resp']) ? "" : "checked" ?>>
                         <label for="foil">Foil</label>
                     </li>
 
                     <li class="liBasis25">
-                        <input tabindex="17" type="checkbox" name="sportAutres[]" id="skiNautique" <?= $answers['othersSailSports_resp'] === "skiNautique" ? "checked" : "" ?>>
+                        <input tabindex="17" type="checkbox" name="sportAutres[]" id="skiNautique" value="skiNautique" <?= $answers['othersSailSports_resp'] === null || !in_array("skiNautique", $answers['othersSailSports_resp']) ? "" : "checked" ?>>
                         <label for="skiNautique">Ski Nautique</label>
                     </li>
 
                     <li class="liBasis25">
-                        <input tabindex="18" value="plancheVoile" type="checkbox" name="sportAutres[]" id="plancheVoile" <?= $answers['othersSailSports_resp'] === "plancheVoile" ? "checked" : "" ?>>
+                        <input tabindex="18" value="plancheVoile" type="checkbox" name="sportAutres[]" id="plancheVoile" <?= $answers['othersSailSports_resp'] === null || !in_array("plancheVoile",$answers['othersSailSports_resp']) ? "" : "checked" ?>>
                         <label for="plancheVoile">Planche à voile</label>
                     </li>
                 </ul>
@@ -202,21 +203,21 @@ Date : 15.05.2022 v1
 
                 <ul>
                     <li class="liBasis100">
-                        <input tabindex="19" type="radio" name="directionPlanche" id="inclinaison" value="inclinaison">
+                        <input tabindex="19" type="radio" name="directionPlanche" id="inclinaison" value="inclinaison" <?= $answers['windSurfDirection_resp'] === "inclinaison" ? "checked" : "" ?>>
                         <label for="inclinaison">En se penchant sur un des côtés</label>
                     </li>
 
                     <li class="liBasis100">
-                        <input tabindex="20" type="radio" name="directionPlanche" id="mat" value="mat">
+                        <input tabindex="20" type="radio" name="directionPlanche" id="mat" value="mat" <?= $answers['windSurfDirection_resp'] === "mat" ? "checked" : "" ?>>
                         <label for="mat">En changeant l'inclinaison du mât</label>
                     </li>
                     <li class="liBasis100">
-                        <input type="radio" tabindex="21" name="directionPlanche" id="corps" value="corps">
+                        <input type="radio" tabindex="21" name="directionPlanche" id="corps" value="corps" <?= $answers['windSurfDirection_resp'] === "corps" ? "checked" : "" ?>>
                         <label for="corps">En tournant notre corps puis la planche</label>
                     </li>
 
                     <li class="liBasis100">
-                        <input type="radio" tabindex="22" name="directionPlanche" id="avecMains" value="avecMains">
+                        <input type="radio" tabindex="22" name="directionPlanche" id="avecMains" value="avecMains" <?= $answers['windSurfDirection_resp'] === "avecMains" ? "checked" : "" ?>>
                         <label for="avecMains">Avec les mains</label>
                     </li>
                 </ul>
@@ -226,11 +227,11 @@ Date : 15.05.2022 v1
                 <legend>Comment s'appelle le nouveau système utilisé depuis quelques décennies ?</legend>
 
                 <select tabindex="23" multiple name="systemeFoil" id="systemeFoil">
-                    <option value="quille">Une quille</option>
-                    <option value="surQuille">Sur la quille</option>
-                    <option value="foil">Un foil</option>
-                    <option value="drisse">Une drisse</option>
-                    <option value="surMat">Sur le mât</option>
+                    <option <?= $answers['foil_resp'] === "quille" ? "selected" : "" ?> value="quille">Une quille</option>
+                    <option <?= $answers['foil_resp'] === "baume" ? "selected" : "" ?> value="baume">Une baume</option>
+                    <option <?= $answers['foil_resp'] === "foil" ? "selected" : "" ?> value="foil">Un foil</option>
+                    <option <?= $answers['foil_resp'] === "drisse" ? "selected" : "" ?> value="drisse">Une drisse</option>
+                    <option <?= $answers['foil_resp'] === "surMat" ? "selected" : "" ?> value="surMat">Le mât</option>
                     <option value="hale-bas">Hale-bas</option>
                 </select>
             </fieldset>
@@ -238,12 +239,12 @@ Date : 15.05.2022 v1
             <fieldset>
                 <legend>Question bonus</legend>
                 <label for="motInterdit">Quel est le mot qu'il ne faut surtout pas dire sur un bateau ?</label>
-                <input tabindex="24" type="text" name="motInterdit" id="motInterdit">
+                <input tabindex="24" type="text" name="motInterdit" id="motInterdit" value="<?= $answers['wrongWord_resp'] ?>">
             </fieldset>
 
             <fieldset>
                 <legend>Donnez nous votre avis :</legend>
-                <textarea tabindex="25" name="comment" id="comment" cols="50" rows="5" placeholder="Merci pour votre commentaire!"></textarea>
+                <textarea tabindex="25" name="comment" id="comment" cols="50" rows="5" placeholder="Merci pour votre commentaire!"><?= $comment_resp ?></textarea>
             </fieldset>
 
             <input tabindex="26" id="verifier" type="button" value="Verifier">

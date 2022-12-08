@@ -195,7 +195,7 @@ function afficheCorrectpremiereUtilite() {
         for (let i in premiereUtilite) {
             let id = premiereUtilite[i];
 
-            if (id.id == 'cargaison' || id.id == 'moyenTransport') {
+            if (id.id == 'cargaison' || id.id == 'colonisations') {
                 id.style.accentColor = "lightGreen";
                 let idParent = id.parentNode;
                 idParent.style.borderBottom = 'solid 2px lightgreen';
@@ -205,12 +205,12 @@ function afficheCorrectpremiereUtilite() {
         for (let i in premiereUtilite) {
             let id = premiereUtilite[i];
 
-            if (id.id == 'cargaison' || id.id == 'moyenTransport') {
+            if (id.id == 'cargaison' || id.id == 'colonisations') {
                 id.style.accentColor = "lightGreen";
                 let idParent = id.parentNode;
                 idParent.style.borderBottom = 'solid 2px lightgreen';
 
-            } else if (id.id != 'cargaison' || id.id != 'moyenTransport') {
+            } else if (id.id != 'cargaison' || id.id != 'colonisations') {
                 id.style.accentColor = "red";
                 let idParent = id.parentNode;
                 idParent.style.borderBottom = 'solid 2px red';
@@ -465,7 +465,7 @@ function verifiePremiereUtilite() {
         let resp = premiereUtiliteResp[i];
         if (resp == 'cargaison') {
             verifieCargaison = true;
-        } else if (resp == 'moyenTransport') {
+        } else if (resp == 'colonisations') {
             verifieTransport = true;
         } else {
             verifieAutres = false;

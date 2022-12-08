@@ -41,7 +41,7 @@ CREATE TABLE `quizReponses` (
   `othersSailSports_resp` varchar(25) NOT NULL,
   `windSurfDirection_resp` varchar(50) NOT NULL,
   `foil_resp` varchar(20) NOT NULL,
-  `nautism_resp` varchar(20) NOT NULL,
+  `wrongWord_resp` varchar(20) NOT NULL,
   `comments_resp` text NOT NULL
 );
 
