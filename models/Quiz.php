@@ -65,6 +65,23 @@ function InsertAnswers(array $answers, string $userComment) : bool | array {
 }
 
 /**
+ * Return a list of users ordened by the points of the users.
+ *
+ * @return array List of users
+ */
+function getUsersRanking() : array{
+    $db = connectionBdd();
+    $query = "SELECT fname, points FROM user ORDER BY points DESC;";
+
+    $statement = $db->prepare($query);
+    $statement->execute();
+
+    $rank = $statement->fetchAll();
+    
+    return $rank;
+}
+
+/**
  * Verify if the inputs are safes.
  *
  * @param array $answers - Answers of the quiz.

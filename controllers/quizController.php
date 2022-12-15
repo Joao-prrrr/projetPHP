@@ -78,4 +78,9 @@ function validateQuiz(array $answers) : int{
 
     return $points;
 }
+
+function getRanking() : array{
+    return getUsersRanking();
+}
+
 ?>

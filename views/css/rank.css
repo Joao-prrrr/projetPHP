@@ -1,0 +1,58 @@
+section{
+    border-left: rgb(8, 67, 157, 1) solid 5px;
+    border-right: rgb(8, 67, 157, 1) solid 5px;
+    background-color: white;
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 0 2em 0;
+}
+
+h1 {
+    flex-basis: 100%;
+    font-size: 2em;
+    text-align: center;
+}
+
+table * {
+    border: solid 1px black;
+    text-align: center;
+}
+
+thead td {
+    border: none;
+    padding: 1em;
+    margin: .5em;
+    font-size: 2em;
+}
+
+td {
+    padding: 0 0 .5em 0;
+    font-size: 1.5em;
+    border: none;
+    border-top: solid 1px black;
+}
+
+img {
+    margin: 0;
+    width: 7%;
+}
+
+.first td, .seconde td, .third td {
+    padding: 1em;
+    
+}
+
+.first {
+    background-color: gold;
+}
+
+.seconde {
+    background-color: silver;
+}
+
+.third {
+    background-color:#944d0b;
+}
